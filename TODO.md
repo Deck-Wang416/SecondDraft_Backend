@@ -19,7 +19,7 @@
 
 5. 编写create_app()
    - 初始化扩展：CORS、SQLAlchemy、JWT
-   - 注册 Blueprint
+   - 注册Blueprint
    - 加载环境变量配置
 
 # Day 2
@@ -32,21 +32,24 @@
    - 函数：verify_password(hashed, raw_password)
 
 3. 初始化数据库
-   - 在 run.py 中添加 db.create_all()
-   - 启动服务并验证 User 表是否创建成功
+   - 在run.py中添加 db.create_all()
+   - 启动服务并验证User表是否创建成功
 
-4. 实现注册接口（routes.py）
-   - 接收 username、email、password
+4. 用Redis作为临时缓存，实现登录失败次数限制+临时封锁机制
+   - Redis自带TTL，可以自动过期，适合做登录节流（throttling）
+
+5. 实现注册接口（routes.py）
+   - 接收username、email、password
    - 校验重复、写入用户
    - 返回注册成功或失败消息
 
-5. 实现登录接口（routes.py）
-   - 接收 email、password
-   - 验证密码，生成并返回 JWT access_token
+6. 实现登录接口（routes.py）
+   - 接收email、password
+   - 验证密码，生成并返回JWT access_token
 
-6. 添加受保护接口示例（routes.py）
-   - 创建 /api/protected 路由
-   - 验证 JWT token 后返回当前用户信息
+7. 添加受保护接口示例（routes.py）
+   - 创建/api/protected 路由
+   - 验证JWT token 后返回当前用户信息
 
-7. 使用 Postman 测试接口功能
+8. 使用Postman测试接口功能
    - 测试注册、登录、token 获取与验证流程

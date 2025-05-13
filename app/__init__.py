@@ -8,8 +8,9 @@ import os
 db = SQLAlchemy()
 jwt = JWTManager()
 
+# create a flask application instance
 def create_app():
-    load_dotenv()
+    load_dotenv()  # load environment variables from a .env file
 
     app = Flask(__name__)
 
@@ -19,7 +20,7 @@ def create_app():
 
     db.init_app(app)
     jwt.init_app(app)
-    CORS(app)
+    CORS(app)  # allow cross-domain access
 
     from app.routes import api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
